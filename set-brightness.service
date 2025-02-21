@@ -1,0 +1,12 @@
+[Unit]
+Description=Set screen brightness at startup
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/brightnessctl s 30%
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+

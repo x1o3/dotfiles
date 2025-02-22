@@ -2,7 +2,7 @@ window#waybar {
     font-family: "JetBrains Mono NerdFont";
     background-color: rgba(0,0,0,0);
     font-size: 0.8rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 }
 
 .modules-left, .modules-center {
@@ -24,26 +24,42 @@ window#waybar {
 } */
 
 #workspaces {
+    color : white;
     background-color: rgba(0,0,0,0.5);
     border-radius: 0.5rem;
     padding: 0 2px;
 }
 
 #workspaces button {
+    color : white; 	
     font-size: 0.6rem;
     padding: 0 0.3rem 0 0;
 }
 
 #window {
+    color : white;    	
     background-color: rgba(0,0,0,0.5);
     border-radius: 0.5rem;
     padding: 2px 5px;
 }
 
+#temperature {
+    color : lightskyblue;
+}
+
 #clock {
+    color : white;
     font-weight: bolder;
     border-radius: 0.5rem;
     padding: 0 3px 0 0;
+}
+
+#backlight {
+	color : orange;
+}
+
+#wireplumber {
+	color : white;
 }
 
 #battery {
@@ -62,6 +78,7 @@ window#waybar {
     color: lightgoldenrodyellow;
 }
 
-#temperature {
-    color: lightslategray;
+#custom-music {
+  color: #a6adc8;
 }
+

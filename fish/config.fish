@@ -3,3 +3,4 @@ end
 set fish_greeting
 #bind \t forward-word
 #bind \t\t accept-autosuggestion
+

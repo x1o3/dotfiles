@@ -14,7 +14,7 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    font:                        "Cartograph CF 10";
+    font:                        "JetBrains Mono Nerd Font 10";
     background:                  #2D1B14;
     background-alt:              #462D23;
     foreground:                  #FFFFFF;
@@ -57,7 +57,7 @@ imagebox {
     spacing:                     20px;
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/d.png", height);
+    background-image:            url("~/dotfiles/wallpapers/wall_skull.png", height);
     children:                    [ "inputbar", "dummy", "message" ];
 }
 
@@ -80,7 +80,7 @@ inputbar {
     children:                    [ "dummy", "prompt", "dummy"];
 }
 
-dummy {    
+dummy {
     background-color:            transparent;
 }
 
@@ -91,7 +91,6 @@ prompt {
 
 /*****----- Message -----*****/
 message {
-
     enabled:                     true;
     margin:                      0px;
     padding:                     15px;
@@ -100,7 +99,6 @@ message {
     text-color:                  @foreground;
 }
 textbox {
-
     background-color:            inherit;
     text-color:                  inherit;
     vertical-align:              0.5;
@@ -136,7 +134,7 @@ element {
     cursor:                      pointer;
 }
 element-text {
-    font:                        "Font Awesome 6 Free 32";
+    font:                        "feather bold 32";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
@@ -144,7 +142,6 @@ element-text {
     horizontal-align:            0.5;
 }
 element selected.normal {
-    font: "Font Awesome 6 Free 10";
     background-color:            var(selected);
     text-color:                  var(background);
 }

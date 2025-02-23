@@ -26,25 +26,25 @@ button:focus, button:active, button:hover {
 }
 
 #lock {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/lock.png"), url("/home/x1o3/dotflies/wlogout/lock.png"));
+    background-image: image(url("./icons/lock.png"), url("./icons/lock.png"));
 }
 
 #logout {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/logout.png"), url("/home/x1o3/dotfiles/wlogout/logout.png"));
+    background-image: image(url("./icons/logout.png"), url("./icons/logout.png"));
 }
 
 #suspend {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/pause.png"), url("/home/x1o3/dotfiles/wlogout/pause.png"));
+    background-image: image(url("./icons/pause.png"), url("./icons/pause.png"));
 }
 
 #hibernate {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/minus.png"), url("/home/x1o3/dotfiles/wlogout/minus.png"));
+    background-image: image(url("./icons/minus.png"), url("./icons/minus.png"));
 }
 
 #shutdown {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/power.png"), url("/home/x1o3/dotfiles/wlogout/power.png"));
+    background-image: image(url("./icons/power.png"), url("./icons/power.png"));
 }
 
 #reboot {
-    background-image: image(url("/home/x1o3/dotfiles/wlogout/reboot.png"), url("/home/x1o3/dotfiles/wlogout/reboot.png"));
+    background-image: image(url("./icons/reload.png"), url("./icons/reload.png"));
 }

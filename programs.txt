@@ -1,0 +1,1 @@
+paru -S pamixer pavucontrol pipewire ttf-font-awesome wlogout neovim fastfetch blueman dunst fish zen-browser discord code obsidian spotify brightnessctl zthunar locate waybar 

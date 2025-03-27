@@ -1,1 +1,1 @@
-paru -S wl-clipboard ttf-jetbrains-mono-nerd hyprshot pamixer pavucontrol pipewire ttf-font-awesome wlogout neovim fastfetch blueman dunst fish zen-browser discord code obsidian spotify brightnessctl zthunar locate waybar 
+paru -S colloid-gtk-theme-git papirus-icon-theme starship pipes-rs tmux exa ly wl-clipboard ttf-jetbrains-mono-nerd hyprshot pamixer pavucontrol pipewire ttf-font-awesome wlogout neovim fastfetch blueman dunst fish zen-browser discord code obsidian spotify brightnessctl zthunar locate waybar --needed 

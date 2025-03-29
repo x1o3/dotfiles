@@ -10,9 +10,6 @@ set -U fish_color_command "#f8bd96" # '#50fa7b'
 set fish_color_error brred #'#ff5555'
 set fish_color_quote bryellow
 # set fish_color_keyword "#5E9DA1"
-# set -U fish_color_error "#ff3333"
-
-
 fish_vi_key_bindings
 alias clone="git clone"
 alias pull="git pull"
@@ -32,9 +29,9 @@ alias la='exa -a --color=always --group-directories-first'  # all files and dirs
 alias ls='exa --color=always --icons --group-directories-first'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | grep -E "^\."' 
+alias neofetch="fastfetch"
 alias pipes="pipes-rs -k curved -p 3 -t 0.13 -r 0.6"
 alias ":q"="exit"
-alias bsdk="lsblk"
 alias v="nvim"
 alias vim="nvim"
 alias tmsource="tmux source-file ~/.config/tmux/tmux.conf"

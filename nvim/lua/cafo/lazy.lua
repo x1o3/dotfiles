@@ -21,33 +21,97 @@ require("lazy").setup({
     opts = {
       bigfile = { enabled = true },
       dashboard = { enabled = true },
+      explorer = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
       notifier = {
         enabled = true,
         timeout = 3000,
       },
+      picker = { enabled = true },
       quickfile = { enabled = true },
+      scope = { enabled = true },
+      scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
       styles = {
         notification = {
-          wo = { wrap = true } -- Wrap notifications
+          -- wo = { wrap = true } -- Wrap notifications
         }
       }
     },
     keys = {
-      { "<leader>b",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+      -- Top Pickers & Explorer
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      -- { "<leader>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+      { "<C-n>", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- find
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+      { "<leader>.", function() Snacks.picker.recent({filter = {cwd = true}}) end, desc = "Recent" },
+      -- git
+      { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+      { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+      -- Grep
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+      { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      -- search
+      { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+      { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+      { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+      { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+      { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+      { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+      { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+      { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+      { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+      { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+      { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+      { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+      { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+      { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+      { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
+      { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+      -- LSP
+      { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+      { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+      { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+      { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+      { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+      -- Other
+      { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+      { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+      { "<leader>b.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-      { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
+      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-      { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+      -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
       { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
       { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
       {
@@ -87,47 +151,38 @@ require("lazy").setup({
           Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
           Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
           Snacks.toggle.diagnostics():map("<leader>ud")
-          Snacks.toggle.line_number():map("<leader>un")
+          Snacks.toggle.line_number():map("<leader>ul")
           Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
           Snacks.toggle.inlay_hints():map("<leader>uh")
+          Snacks.toggle.indent():map("<leader>ug")
+          Snacks.toggle.dim():map("<leader>uD")
         end,
       })
     end,
-  iii},
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = { {'nvim-lua/plenary.nvim'} },
-    -- lazy = true,
-    -- cmd = require("telescope.builtin"),
   },
-
-  -- {
-  --   'goolord/alpha-nvim',
-  --   dependencies = { 'kyazdani42/nvim-web-devicons' },
-  --   config = function ()
-  --     require'alpha'.setup(require'alpha.themes.startify'.config)
-  --   end
-  -- },
   {
     'christoomey/vim-tmux-navigator',
     lazy=false,
   },
+  -- SESSIONS
+  {
+    "gennaro-tedesco/nvim-possession",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
+    config = true,
+    keys = {
+      { "<leader>sl", function() require("nvim-possession").list() end, desc = "📌list sessions", },
+      { "<leader>sn", function() require("nvim-possession").new() end, desc = "📌create new session", },
+      { "<leader>su", function() require("nvim-possession").update() end, desc = "📌update current session", },
+      { "<leader>sd", function() require("nvim-possession").delete() end, desc = "📌delete selected session"},
+    },
+  },
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
-  },
-  'numToStr/FTerm.nvim',
-  'theprimeagen/harpoon',
-
-  -- 'vimwiki/vimwiki',
-  -- {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5' },
-  {
-    'toppair/peek.nvim',
-    build = 'deno task --quiet build:fast',
-    lazy = true,
   },
   {
     'mbbill/undotree',
@@ -148,14 +203,6 @@ require("lazy").setup({
     end
   },
 
-  -- {
-  --   'akinsho/bufferline.nvim',
-  --   version = "*",
-  --   dependencies = 'nvim-tree/nvim-web-devicons',
-  --   config = function()
-  --     require("bufferline").setup{}
-  --   end
-  -- },
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 
   {
@@ -166,27 +213,9 @@ require("lazy").setup({
     },
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      -- animation = true,
-      -- insert_at_start = true,
-      -- …etc.
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
-
-  {
-    "anuvyklack/windows.nvim",
-    dependencies = {
-      "anuvyklack/middleclass",
-      "anuvyklack/animation.nvim"
-    },
-    config = function()
-      vim.o.winwidth = 20
-      vim.o.winminwidth = 15
-      require('windows').setup()
-    end
-  },
-  -- 'Raimondi/delimitMate',
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -200,26 +229,7 @@ require("lazy").setup({
       require'nvim-rooter'.setup()
     end
   },
-  {
-    'nvim-tree/nvim-tree.lua',
-    lazy = true,
-    dependencies = {'kyazdani42/nvim-web-devicons'},
-
-  },
-
-  {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "kyazdani42/nvim-web-devicons", -- optional dependency
-    },
-    -- opts = {
-      --     -- configurations go here
-      -- },
-    },
-    -- LSP
+  -- LSP
 
     {
       "jinzhongjia/LspUI.nvim",
@@ -263,8 +273,18 @@ require("lazy").setup({
       build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
 
-    -- {'onsails/lspkind.nvim'},
--- nvim v0.8.0
+    {
+      "numToStr/FTerm.nvim",
+      config = function()
+        require("FTerm").setup({
+          border = 'double',
+          dimensions  = {
+            height = 0.9,
+            width = 0.9,
+          },
+        })
+      end
+    },
 {
   "kdheepak/lazygit.nvim",
   lazy = true,
@@ -275,17 +295,14 @@ require("lazy").setup({
     "LazyGitFilter",
     "LazyGitFilterCurrentFile",
   },
-  -- optional for floating window border decoration
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  -- setting the keybinding for LazyGit with 'keys' is recommended in
-  -- order to load the plugin when the command is run for the first time
   keys = {
     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
   }
 },
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     {
       "folke/noice.nvim",
       dependencies = {
@@ -293,55 +310,32 @@ require("lazy").setup({
         -- "rcarriga/nvim-notify",
       }
     },
-
-    'LnL7/vim-nix',
-
     {
-      "epwalsh/obsidian.nvim",
-      version = "*",  -- recommended, use latest release instead of latest commit
-      lazy = true,
-      ft = "markdown",
-      -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-      -- event = {
-        --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-        --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-        --   -- refer to `:h file-pattern` for more examples
-        --   "BufReadPre path/to/my-vault/*.md",
-        --   "BufNewFile path/to/my-vault/*.md",
-        -- },
-        dependencies = {
-          -- Required.
-          "nvim-lua/plenary.nvim",
+      "toppair/peek.nvim",
+      event = { "VeryLazy" },
+      build = "deno task --quiet build",
+      config = function()
+        require("peek").setup({
+          app = { 'brave', '--new-window' },
 
-          -- see below for full list of optional dependencies 👇
-        },
-        opts = {
-          workspaces = {
-            {
-              name = "personal",
-              path = "~/vaults/personal",
-            },
-            {
-              name = "work",
-              path = "~/vaults/work",
-            },
-          },
-
-          -- see below for full list of options 👇
-        },
-      },
+        })
+        vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+        vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+      end,
+    },
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
+      opts = {},
+    },
 
     "folke/trouble.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" },
     opts = {
-    },
-    {
-      "folke/zen-mode.nvim",
-      opts = {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      },
     },
     {
       "folke/persistence.nvim",
@@ -351,32 +345,19 @@ require("lazy").setup({
         require("persistence").setup()
       end,
     },
-
-    -- {
-    --   "MunifTanjim/nougat.nvim",
-    -- },
-    -- LUALINE
-    -- {
-    --   "rebelot/heirline.nvim",
-    --   -- You can optionally lazy-load heirline on UiEnter
-    --   -- to make sure all required plugins and colorschemes are loaded before setup
-    --   -- event = "UiEnter",
-    -- },
     {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'kyazdani42/nvim-web-devicons'}
     },
-
     -- themes
     {
       "neanias/everforest-nvim",
       version = false,
-      lazy = false,
+      lazy = true,
       priority = 1000, -- make sure to load this before all the other start plugins
-      -- Optional; default configuration will be used if setup isn't called.
       config = function()
         require("everforest").setup({
-          background = "soft",
+          background = "medium",
           transparent_background_level = 0,
           italics = true,
           disable_italic_comments = false,
@@ -386,53 +367,18 @@ require("lazy").setup({
         })
       end,
     },
-    'shaunsingh/nord.nvim',
-    -- {'drewtempelmeyer/palenight.vim', lazy = true},
-    'navarasu/onedark.nvim',
-    {'NTBBloodbath/doom-one.nvim', lazy = true},
+    {
+      "olimorris/onedarkpro.nvim",
+      -- priority = 1000, -- Ensure it loads first
+      lazy=true,
+    },
     { "catppuccin/nvim", name = "catppuccin", lazy = true },
-    "rebelot/kanagawa.nvim",
-    -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true },
-    -- {
-    --   "nyoom-engineering/oxocarbon.nvim",
-    --   -- lazy = false,
-    -- },
-    -- {
-    --   'andersevenrud/nordic.nvim',
-    --   config = function()
-    --     -- The table used in this example contains the default settings.
-    --     -- Modify or remove these to your liking (this also applies to alternatives below):
-    --     require('nordic').colorscheme({
-    --       -- Underline style used for spelling
-    --       -- Options: 'none', 'underline', 'undercurl'
-    --       underline_option = 'undercurl',
-    --       -- italic = true,
-    --       -- italic_comments = true,
-    --       minimal_mode = false,
-    --       alternate_backgrounds = false,
-    --
-    --     })
-      -- end
-    -- },
-    'wilmanbarrios/palenight.nvim',
+    {"rebelot/kanagawa.nvim", lazy=true},
+    {"alexmozaidze/palenight.nvim", lazy=true},
+    -- 'JoosepAlviste/palenightfall.nvim',
+    -- 'drewtempelmeyer/palenight.vim',
     {
       'Mofiqul/dracula.nvim',
-      -- config = function ()
-        -- require('dracula').setup()
-        -- vim.cmd.colorscheme 'dracula'
-      -- end
+      lazy=true,
     },
-
-    -- 'kdheepak/monochrome.nvim',
-    -- 'Abstract-IDE/Abstract-cs',
-
-    -- {
-    --   'maxmx03/dracula.nvim',
-    --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    --   priority = 1000, -- make sure to load this before all the other start plugins
-    --   config = function ()
-    --     require('dracula').setup()
-    --     -- vim.cmd.colorscheme 'dracula'
-    --   end
-    -- },
   })

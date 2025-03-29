@@ -1,12 +1,10 @@
--- Karttikeya's Nvim config
-
 local opt = vim.opt
-local o= vim.o
+local o = vim.o
 local g = vim.g
 
-vim.opt.signcolumn = 'yes'
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+opt.signcolumn = 'yes'
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 o.encoding = "UTF-8"
 opt.ignorecase = true
 opt.smartcase = true
@@ -24,7 +22,7 @@ opt.expandtab = true
 o.statusline = o.statusline .. '%#warningmsg#' .. '%*'
 opt.linebreak = true
 opt.termguicolors = true
--- vim.g.term = "screen-256color"
+-- g.term = "screen-256color"
 
 opt.swapfile = false
 opt.backup = false
@@ -60,22 +58,19 @@ vim.api.nvim_create_autocmd({"BufReadPost"}, {
   end
 })
 
-if vim.g.neovide then
-  vim.o.guifont = "jetbrainsmono nerd font:h14"
-  vim.opt.linespace = 0
-  vim.g.neovide_scale_factor = 1.0
-  vim.g.neovide_padding_top = 1
-  vim.g.neovide_padding_bottom = 1
-  vim.g.neovide_padding_right = 1
-  vim.g.neovide_padding_left = 1
-end
+vim.filetype.add {
+  extension = { rasi = 'rasi' },
+  pattern = {
+    ['.*/waybar/config'] = 'jsonc',
+    ['.*/mako/config'] = 'dosini',
+    ['.*/kitty/*.conf'] = 'bash',
+    ['.*/hypr/.*%.conf'] = 'hyprlang',
+  },
+}
 
 require("cafo.remap")
 require("cafo.lazy")
 require 'colorizer'.setup()
 
-vim.cmd("hi IndentBlanklineSpaceCharBlankline guifg=Comment")
-vim.cmd("hi IndentBlanklineSpaceChar guifg=Comment")
-vim.o.background = "light"
 vim.cmd.colorscheme("kanagawa-dragon")
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')

@@ -3,7 +3,6 @@ set fish_greeting
 set TERM "xterm-256color"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -Ux FZF_DEFAULT_OPTS "--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
-
 set fish_color_normal brcyan 
 set fish_color_autosuggestion brgrey
 set -U fish_color_command "#f8bd96" # '#50fa7b'
@@ -25,16 +24,18 @@ alias init="git init"
 alias save="git config --global credential.helper store"
 alias checkout="git checkout"
 alias ll='exa -al --color=always --group-directories-first' # my preferred listing
+alias reflector = 'reflector --verbose --country 'India' -l 5 --sort rate --save /etc/pacman.d/mirrorlist'
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs
 alias ls='exa --color=always --icons --group-directories-first'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | grep -E "^\."' 
-alias neofetch="fastfetch"
+# alias neofetch="fastfetch"
 alias pipes="pipes-rs -k curved -p 3 -t 0.13 -r 0.6"
 alias ":q"="exit"
 alias v="nvim"
 alias vim="nvim"
 alias tmsource="tmux source-file ~/.config/tmux/tmux.conf"
 alias tmux="tmux -u"
+alias wcc="warp-cli connect"
 alias mux="tmux new-session -t shell"
 starship init fish | source

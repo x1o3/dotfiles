@@ -24,16 +24,16 @@ alias init="git init"
 alias save="git config --global credential.helper store"
 alias checkout="git checkout"
 alias ll='exa -al --color=always --group-directories-first' # my preferred listing
-alias reflector = 'reflector --verbose --country 'India' -l 5 --sort rate --save /etc/pacman.d/mirrorlist'
+alias reflector='sudo reflector --verbose --country 'India' -l 5 --sort rate --save /etc/pacman.d/mirrorlist'
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ls='exa --color=always --icons --group-directories-first'  # long format
+alias ls='exa --color=always --icons --group-directories-first | grep -v "\($RECYCLE.BIN\|System Volume Information\)"'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | grep -E "^\."' 
 # alias neofetch="fastfetch"
 alias pipes="pipes-rs -k curved -p 3 -t 0.13 -r 0.6"
 alias ":q"="exit"
-alias v="nvim"
-alias vim="nvim"
+alias v="vim"
+# alias vim="nvim"
 alias tmsource="tmux source-file ~/.config/tmux/tmux.conf"
 alias tmux="tmux -u"
 alias wcc="warp-cli connect"
